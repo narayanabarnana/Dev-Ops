@@ -1,0 +1,120 @@
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: install httpd package
+    yum: name=httpd state=present
+  - name: start httpd service
+    service: name=httpd state=started
+	
+
+
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: Transferring the file from controller to slave node
+    copy: src=/tmp/test.sh dest=/tmp/
+  - name: Execute the shell script
+    command: sh /tmp/test.sh
+
+
+
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: Install Tomcat package
+    yum: name=tomcat state=latest
+  - name: Start tomcat service
+    service: name=tomcat state=started
+  - name: deploy sample.war file
+    copy: src=/tmp/sample.war dest=/usr/share/tomcat/webapps
+    notify: restart tomcat after the sample.war is deployed
+  handlers:
+  - name: restart tomcat after the sample.war is deployed
+    service: name=tomcat state=restarted
+	
+	
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: Install Java Package
+    yum: name=java state=present
+  - name: Install Jenkins
+    yum: name=jenkins state=present
+  - name: start jenkins server
+    service: name=jenkins state=started
+	
+****************************************************************************
+
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: Install Tomcat Package
+    yum: name=tomcat state=latest
+  - name: Start tomcat server
+    service: name=tomcat state=started
+  -name: deploy war file
+   copy: src=/tmp/SampleWebApp.war dest=/usr/share/tomcat/webapps
+   notify: restart tomcat after the SampleWebApp.war is deployed
+  handlers:
+  - name: restart tomcat after the SampleWebApp.war is deployed
+    service: name=tomcat state=restarted
+	
+	
+******************************************************************************
+
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  vars:
+   http_port: 8080
+   https_port: 8443
+  tasks:
+  - name: Install Java Package
+    yum: name=java state=present
+  - name: Install Tomcat Package
+    yum: name=tomcat state=latest
+  - name: Start tomcat server
+    service: name=tomcat state=started
+  - name: deploy war file
+    copy: src=/tmp/SampleWebApp.war dest=/usr/share/tomcat/webapps
+    notify: restart tomcat after the SampleWebApp.war is deployed
+  handlers:
+  - name: restart tomcat after the SampleWebApp.war is deployed
+    service: name=tomcat state=restarted
+	
+	
+*********************************************************************************
+
+
+
+  - name: Install Tomcat package
+    yum: name=tomcat state=latest
+  - name: Start tomcat service
+    service: name=tomcat state=started
+  - name: deploy sample.war file
+    copy: src=/var/lib/jenkins/workspace/Maven-Ansible/target/sparkjava-hello-world-1.0.war dest=/usr/share/tomcat/webapps
+    notify: restart tomcat after the sample.war is deployed
+	
+	
+
+
+
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  
+  roles:
+  - tomcat
+	

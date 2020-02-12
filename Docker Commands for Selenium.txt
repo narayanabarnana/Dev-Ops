@@ -1,0 +1,25 @@
+docker run -d -p 4900:4900 --link selenium-hub:hub -v /dev/shm:/dev/shm selenium/node-chrome-debug
+
+
+docker run -d -p 4444:4444 –-name selenium-hub selenium/hub
+
+http://localhost:4444/grid/console
+http://10.104.207.25:4444/grid/console
+
+docker run -d –-link selenium-hub:hub selenium/node-chrome
+docker run -d –-link selenium-hub:hub selenium/node-firefox
+
+docker run -d –P –-link selenium-hub:hub selenium/node-chrome-debug
+
+docker run -d –P –-link selenium-hub:hub selenium/node-firefox-debug
+
+
+java -Dwebdriver.gecko.driver="C:\Users\1024812\Desktop\Selenium Data\geckodriver-v0.24.0-win64\geckodriver.exe" -jar selenium-server-standalone-3.141.59.jar -role node -hub http://10.104.207.25:4444/grid/register/
+
+
+docker run --name 23ee937cf0cc --net=host -d 23ee937cf0cc
+
+docker run --name 23ee937cf0cc --net=host -d selenium/hub
+
+
+

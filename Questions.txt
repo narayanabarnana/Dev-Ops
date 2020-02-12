@@ -1,0 +1,61 @@
+Questions:
+
+1)How to send an email with attachments when the build fails/pass?
+2)looks like PMD plugin is out dated and it is showing to use next Generation plugin. can you show how to use this?
+3)i have scheduled a build daily at 2:PM IST but the build is failing with the errors 
+ERROR: Error fetching remote repo 'origin' 
+but  when i execute using build now option the job is running succesfully.
+4)can we exeucte multiple goals at a time i.e compile test package
+5)How to schedule a test build based on deployment status i.e. if the developer deploys the build and if the deployment is success then the test cases(selenium test case) will execute automatically
+6)what is the use of creating war/jar file in jenkins?
+7)How to create a jar/war file for selenium tests?
+8)How to create a jenkinsfile?
+There are two types of syntax used for defining your JenkinsFile.
+
+Declarative
+Scripted
+
+
+how to check python is installed on vm?
+what is the use of role in ansible?
+
+
+
+http://35.237.192.41:8080/
+http://35.231.14.82:8080/
+
+H 14 * * *
+
+git4 - master
+git5 -slave
+
+narayana ALL=NOPASSWD: ALL
+
+http://localhost:8080/
+
+SHA256:UClJ/nsuVgr7dzirXlXMKBQss/ww0aYg34S/MFbnjN8 narayana@ansiblemaster	
+
+node 'puppetagent' {
+        class{'linux1':}
+        class{'linux':}
+}
+class linux1 {
+        file{'/info2.txt':
+        ensure => 'present',
+        content => "This is our first puppet file",
+                    }
+        package{'httpd':
+        ensure => 'present',
+        }
+        service{'httpd':
+        ensure => 'running',
+        enable => 'true'
+        }
+}
+class linux {
+        $pkg_list = ["git", "nano", "java"]
+        package{ $pkg_list:
+        ensure => 'present',
+}
+}
+
